@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: configmap-pod
+  namespace: admin-tp2
+spec:
+  selector:
+    matchLabels:
+      test: configmap
+  template:
+    metadata:
+      labels:
+        test: configmap
+    spec:
+      containers:
+        - name: app-container
+          image: busybox:1.37
+          command:
+            - "sh"
+            - "-c"
+            - "cat /etc/config/app.properties && sleep 3600"
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/config
+      volumes:
+        - name: config-volume
+          configMap:
+            name: my-config
