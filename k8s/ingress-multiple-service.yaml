@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ingress-multiple-app
+  namespace: admin-tp3
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: mymultipleapp.avr.qsh-admin-advanced.quatre.app
+      http:
+        paths:
+          - path: /app1
+            pathType: Prefix
+            backend:
+              service:
+                name: ingress-multiple-service-1
+                port:
+                  number: 80
+          - path: /app2
+            pathType: Prefix
+            backend:
+              service:
+                name: ingress-multiple-service-2
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - mymultipleapp.avr.qsh-admin-advanced.quatre.app
+      secretName: mymultipleapp-tls
