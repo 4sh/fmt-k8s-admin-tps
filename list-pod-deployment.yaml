@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: list-pod-deployment
+  namespace: admin-tp5
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+          test: list-pod
+    template:
+        metadata:
+          labels:
+              test: list-pod
+        spec:
+          serviceAccountName: list-pod-sa
+          containers:
+              - name: list-pod
+                image: bitnami/kubectl:1.30.6
+                command:
+                  - "/bin/sh"
+                  - "-c"
+                  - "kubectl get pods -n admin-tp5; sleep 600"

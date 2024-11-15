@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: list-pod-with-curl-deployment
+  namespace: admin-tp5
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+          test: list-pod-with-curl
+    template:
+        metadata:
+          labels:
+              test: list-pod-with-curl
+        spec:
+          serviceAccountName: list-pod-sa
+          containers:
+              - name: list-pod-with-curl
+                image: curlimages/curl:8.11.0
+                command:
+                  - "/bin/sh"
+                  - "-c"
+                args:
+                  - "sleep infinity"
