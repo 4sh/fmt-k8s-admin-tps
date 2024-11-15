@@ -8,7 +8,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: mymultipleapp.avr.qsh-admin-advanced.quatre.app
+    - host: mymultipleapp.$ME.qsh-admin-advanced.quatre.app
       http:
         paths:
           - path: /app1
@@ -27,5 +27,5 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - mymultipleapp.avr.qsh-admin-advanced.quatre.app
+        - mymultipleapp.$ME.qsh-admin-advanced.quatre.app
       secretName: mymultipleapp-tls
