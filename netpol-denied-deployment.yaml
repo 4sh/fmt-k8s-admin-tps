@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: denied-pod
+  namespace: admin-tp5
+  labels:
+    test: netpol
+    role: denied
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      test: netpol
+      role: denied
+  template:
+    metadata:
+      labels:
+        test: netpol
+        role: denied
+    spec:
+      containers:
+        - name: busybox
+          image: busybox
+          command:
+            - "/bin/sh"
+            - "-c"
+            - "nc -zv postgres 5432; sleep 600"
