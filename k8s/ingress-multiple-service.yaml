@@ -6,7 +6,7 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
-  ingressClassName: nginx
+  ingressClassName: nginx-$ME
   rules:
     - host: mymultipleapp.$ME.qsh-admin-advanced.quatre.app
       http:
