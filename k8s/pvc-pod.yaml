@@ -7,13 +7,6 @@ spec:
   containers:
     - name: app-container
       image: nginx
-      volumeMounts:
-        - mountPath: "/usr/share/nginx/html"
-          name: pvc-storage
       ports:
         - containerPort: 80
           name: "http"
-  volumes:
-    - name: pvc-storage
-      persistentVolumeClaim:
-        claimName: pvc-example

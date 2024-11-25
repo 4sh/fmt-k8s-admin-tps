@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: my-config
-data:
-  app.properties: |
-    app.name: "DemoApp"
-    app.version: "1.0"
-    app.message: "Bienvenue sur Kubernetes avec ConfigMap !"
